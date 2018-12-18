@@ -50,6 +50,7 @@ Lets say we wanted to create a meantrim function that takes a vector as argument
     ````
 1. Copy the example pom.xml and change the groupId and artefactId to "com.mydomain" and "meantrim", respectively.
 your extension/package folder should now look like this:
+
     ````
     pom.xml
     NAMESPACE
@@ -68,6 +69,7 @@ which will be stored in your "target" folder you can now import this package in 
 A more involved example would be something where we have a java class that does something useful and we want to take advantage of that in an  R function
 
 e.g. we have the Java class
+
     ````
     public class StringTransformer {
       
@@ -86,6 +88,7 @@ and we want to make a library which has a function called "makeNumeric" which us
 1. Following the documentation about importing java classes: http://docs.renjin.org/en/latest/importing-java-classes-in-r-code.html
 1. Create src/main/java/ 
 1. Create StringTransformer.java:
+
     ````
     package transformers;
     public class StringTransformer {
