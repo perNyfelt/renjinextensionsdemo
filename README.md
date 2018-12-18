@@ -15,8 +15,7 @@ answers to all my questions on the mailing list mentioned above.
 ## Simple example
 
 Lets say we wanted to create a meantrim function that takes a vector as argument and trims off the min and max values first. i.e.
-
-    ````
+    
     meantrim <- function(x) {
       x <- x[x != max(x)]
       x <- x[x != min(x)]
@@ -28,7 +27,7 @@ Lets say we wanted to create a meantrim function that takes a vector as argument
     [1] "mean is  2,5"
     print(paste("meantrim is ", meantrim(vec)))
     [1] "meantrim is  2,3875"
-    ````
+
 1. Create the files src/main/R/meantrim.R and src/test/R/test.meantrim.R
 1. In meantrim.R write your function:
     ````
@@ -70,7 +69,6 @@ A more involved example would be something where we have a java class that does 
 
 e.g. we have the Java class
 
-    ````
     public class StringTransformer {
       
       /** strips off any non numeric char from the string. */
@@ -82,7 +80,7 @@ e.g. we have the Java class
       }
       
     }  
-    ````
+
 and we want to make a library which has a function called "makeNumeric" which uses the StringTransformer.toNumber() functionality.
 
 1. Following the documentation about importing java classes: http://docs.renjin.org/en/latest/importing-java-classes-in-r-code.html
