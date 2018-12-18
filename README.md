@@ -65,7 +65,7 @@ your extension/package folder should now look like this:
 which will be stored in your "target" folder you can now import this package in your Renjin session and use it
 
 ## Slightly more complex example
-A more involved example would be something where we have a java class that does something useful and i want to take advantage of that in an  R function
+A more involved example would be something where we have a java class that does something useful and we want to take advantage of that in an  R function
 
 e.g. we have the Java class
     ````
