@@ -45,9 +45,9 @@ Lets say we wanted to create a meantrim function that takes a vector as argument
     assertThat(meanTrim(1:10), identicalTo(5.5))
     ````
 1. Create the NAMESPACE file and export your function
-````
-       export(meantrim)
-````
+    ````
+           export(meantrim)
+    ````
 1. Copy the example pom.xml and change the groupId and artefactId to "com.mydomain" and "meantrim", respectively.
 your extension/package folder should now look like this:
     ````
@@ -65,22 +65,22 @@ your extension/package folder should now look like this:
 which will be stored in your "target" folder you can now import this package in your Renjin session and use it
 
 ## Slightly more complex example
-2. A more involved example would be something where I have a java class that does something useful and i want to take advantage of that in an  R function
+A more involved example would be something where I have a java class that does something useful and i want to take advantage of that in an  R function
 
 e.g. we have the Java class
-````
-public class StringTransformer {
-  
-  /** strips off any non numeric char from the string. */
-  public static String toNumber(String txt) {
-    StringBuilder result = new StringBuilder();
-    txt.chars().mapToObj( i -> (char)i )
-    .filter( c -> Character.isDigit(c) ).forEach( c -> result.append(c) );
-    return result.toString();
-  }
-  
-}  
-````
+    ````
+    public class StringTransformer {
+      
+      /** strips off any non numeric char from the string. */
+      public static String toNumber(String txt) {
+        StringBuilder result = new StringBuilder();
+        txt.chars().mapToObj( i -> (char)i )
+        .filter( c -> Character.isDigit(c) ).forEach( c -> result.append(c) );
+        return result.toString();
+      }
+      
+    }  
+    ````
 and we want to make a library which has a function called "makeNumeric" which uses the StringTransformer.toNumber() functionality.
 
 1. Following the documentation about importing java classes: http://docs.renjin.org/en/latest/importing-java-classes-in-r-code.html
