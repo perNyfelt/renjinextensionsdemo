@@ -7,12 +7,14 @@ how to do it (especially after reading the docs mentioned above).
 
 Please refer to the mailing list at https://groups.google.com/forum/#!topic/renjin-dev if you have questions.
 
+These examples are heavily indebted to Dr. Parham Solaimani who provided detailed
+answers to all my questions on the mailing list mentioned above. 
 ## Simple example
 
-Lets say we wanted to create a meanTrim function that takes a vector as argument and trims off the min and max values first. i.e.
+Lets say we wanted to create a meantrim function that takes a vector as argument and trims off the min and max values first. i.e.
 
     ````
-    meanTrim <- function(x) {
+    meantrim <- function(x) {
       x <- x[x != max(x)]
       x <- x[x != min(x)]
       return(mean(x))
@@ -21,13 +23,13 @@ Lets say we wanted to create a meanTrim function that takes a vector as argument
     vec <- c(2.3, 2.7, 3.1, 4.9, 1.0, 2.4, 2.6, 2.1, 2.0, 1.9)
     print(paste("mean is ", mean(vec)))
     [1] "mean is  2,5"
-    print(paste("meanTrim is ", meanTrim(vec)))
-    [1] "meanTrim is  2,3875"
+    print(paste("meantrim is ", meantrim(vec)))
+    [1] "meantrim is  2,3875"
     ````
 1. Create the files src/main/R/meantrim.R and src/test/R/test.meantrim.R
-1. In meanTrim.R write your function:
+1. In meantrim.R write your function:
     ````
-    meanTrim <- function(x) {
+    meantrim <- function(x) {
         x <- x[x != max(x)]
         x <- x[x != min(x)]
         mean(x)
@@ -41,7 +43,7 @@ Lets say we wanted to create a meanTrim function that takes a vector as argument
     ````
 1. Create the NAMESPACE file and export your function
 ````
-       export(meanTrim)
+       export(meantrim)
 ````
 1. Copy the example pom.xml and change the groupId and artefactId to "com.mydomain" and "meantrim", respectively.
 your extension/package folder should now look like this:
@@ -94,7 +96,7 @@ and we want to make a library which has a function called "makeNumeric" which us
       }
     }
     ````
-1. Add extractDigits function (to your meantrim.R file):
+1. Add extractDigits function (to a extractDigits.R file):
     ````
     extractDigits <- function(x) {
         import(transformers.StringTransformer)
@@ -102,8 +104,11 @@ and we want to make a library which has a function called "makeNumeric" which us
     }
     makeNumber <- function(x) as.numeric(extractDigits(x))
     ````
-1. Add test case to test.meantrim.R file:
+1. Add test case to test.extractDigits.R file:
     ````
+    library("se.alipsa:extractDigits")
+    library("hamcrest")
+        
     assertThat(extractDigits(c("5", "6Y8", "He", "02")), identicalTo(c("5", "68", "", "02")))
     assertThat(makeNumber(c("5", "6Y8", "He", "02")), identicalTo(c(5, 68, NA, 2)))
     ````
