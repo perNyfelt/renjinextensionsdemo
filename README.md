@@ -47,8 +47,9 @@ Lets say we wanted to create a meantrim function that takes a vector as argument
     ````
            export(meantrim)
     ````
-1. Copy the example pom.xml and change the groupId and artefactId to "com.mydomain" and "meantrim", respectively.
-your extension/package folder should now look like this:
+1. Copy the example pom.xml and change the groupId and artefactId to match your pom 
+(e.g. "com.mydomain" and "meantrim"), respectively.
+Your extension/package folder should now look like this:
 
     ````
     pom.xml
