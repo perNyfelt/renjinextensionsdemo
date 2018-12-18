@@ -117,7 +117,10 @@ and we want to make a library which has a function called "makeNumeric" which us
     assertThat(makeNumber(c("5", "6Y8", "He", "02")), identicalTo(c(5, 68, NA, 2)))
     ````
 1. Export the new functions in your NAMESPACE and use mvn to test and package your extension
-
+    ````
+    export(extractDigits)
+    export(makeNumber)
+    ````
 ## Overriding functionality
 Lets say we want to override (mask) existing functionality .e.g i want to override library() with something that 
 guesses the correct package so i can do e.g. library("dplyr") and get the same thing as if I would have written 
