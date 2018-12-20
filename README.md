@@ -41,7 +41,7 @@ Lets say we wanted to create a meantrim function that takes a vector as argument
     ````
     library("com.mydomain:meantrim")
     library("hamcrest")
-    assertThat(meanTrim(1:10), identicalTo(5.5))
+    assertThat(meantrim(1:10), identicalTo(5.5))
     ````
 1. Create the NAMESPACE file and export your function
     ````
@@ -111,12 +111,24 @@ and we want to make a library which has a function called "makeNumeric" which us
     ````
 1. Add test case to test.extractDigits.R file:
     ````
-    library("se.alipsa:extractDigits")
+    library("se.alipsa:makenumeric")
     library("hamcrest")
-        
-    assertThat(extractDigits(c("5", "6Y8", "He", "02")), identicalTo(c("5", "68", "", "02")))
-    assertThat(makeNumber(c("5", "6Y8", "He", "02")), identicalTo(c(5, 68, NA, 2)))
+    
+    test.extractDigits <- function() {
+        assertThat(extractDigits(c("5", "6Y8", "He", "02")), identicalTo(c("5", "68", "", "02")))
+        assertThat(extractDigits("56Y8He02"), identicalTo("56802"))
+    }
+    
+    test.makeNumber <- function() {
+        expected <- c(5, 68, NA, 2)
+        assertThat(makeNumber(c("5", "6Y8", "He", "02")), identicalTo(expected))
+        assertThat(makeNumber("234-123-789 12"), identicalTo(23412378912))
+    }
+
     ````
+    A small quirk is that when two test functions are defined hamcrest 
+    will report 3 tests being run. This is because as you can write assertions directly
+    without wrapping them in a function, the "base" itself counts as one test.
 1. Export the new functions in your NAMESPACE and use mvn to test and package your extension
     ````
     export(extractDigits)
