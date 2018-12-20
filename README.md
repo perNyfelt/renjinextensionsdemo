@@ -126,9 +126,9 @@ and we want to make a library which has a function called "makeNumeric" which us
     }
 
     ````
-    A small quirk is that when two test functions are defined hamcrest 
+    Note that when two test functions are defined hamcrest 
     will report 3 tests being run. This is because as you can write assertions directly
-    without wrapping them in a function, the "base" itself counts as one test.
+    without wrapping them in a function (like we did in the meantrim case), the "base" itself counts as one test.
 1. Export the new functions in your NAMESPACE and use mvn to test and package your extension
     ````
     export(extractDigits)
